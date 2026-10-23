@@ -19,7 +19,7 @@
 <section class="section"><div class="eyebrow">BEHIND THE APRON / エプロンの向こう側</div><h2>カレーのことより、<br>先に知ってほしいこと。</h2><div id="facts"></div></section>
 <aside class="quote"><p>「ひとりで来ても、大丈夫。<br>お腹すかせて来てね。」</p><small>— ラメシュさんより</small></aside><section class="section shop-block"><div class="eyebrow">A SMALL GUIDE / お店のことを、少しだけ</div><h2 id="shop"></h2><div class="shop-en">NAMASTE MOTOYAMA · NEPALI KITCHEN</div><div class="tags"><span class="tag">ひとりでもどうぞ</span><span class="tag">辛さ調整できます</span></div><dl id="info"></dl><div class="note"><strong>アレルギーについて</strong><br><span id="allergy"></span></div></section>
 <section class="section access-block" id="access"><div class="eyebrow">COME SAY NAMASTE / 会いにいく</div><h2>次は、お店で<br>「ナマステ」。</h2><div class="route"><p id="address"></p><p id="route"></p></div><a class="button wide hidden" id="map" target="_blank" rel="noopener noreferrer">本山駅を地図で見る（デモ） <span>↗</span></a><p id="mapnote" class="small"></p></section>
-<footer>一枚のカードから、知らなかったお店へ。<br><strong>私が、店主です。</strong><br><a href="?mode=studio">カードを見る・印刷する ↗</a></footer><nav class="sticky" aria-label="お店へのアクセス"><small>ネパール食堂<br>ナマステ・モトヤマ</small><a href="#access">会いにいく <span>↓</span></a></nav>
+<footer>一枚のカードから、知らなかったお店へ。<br><strong>私が、店主です。</strong><br><a href="?mode=studio">カードを見る・印刷する ↗</a></footer><nav class="sticky" aria-label="お店へのアクセス"><small>ネパール食堂<br>ナマステ・モトヤマ</small><a id="visit-map" href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9C%AC%E5%B1%B1%E9%A7%85%20%E5%90%8D%E5%8F%A4%E5%B1%8B" target="_blank" rel="noopener noreferrer" aria-label="Googleマップで本山駅を開く（デモ）">会いにいく <span>↗</span></a></nav>
 </main>
 <main id="studio" class="studio hidden">
 <a href="?">← 店主ページに戻る</a><h1>手のひらに、ひとりの店主。</h1><p>カード表裏 / 63 × 88 mm。画像を保存して、スライドにそのまま載せられます。</p>
@@ -68,7 +68,7 @@ $('shop').textContent = SHOP.name;
 $('info').innerHTML = [['料理',SHOP.cuisine],['営業時間',SHOP.hours],['定休日',SHOP.closed],['予算',SHOP.price]].map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('');
 for(const key of ['allergy','address','route']) $(key).textContent=SHOP[key];
 if(!SHOP.demo) $('demo').classList.add('hidden');
-try{const u=new URL(SHOP.mapUrl);if(u.protocol==='https:'){$('map').href=u.href;$('map').classList.remove('hidden')}}catch{}
+try{const u=new URL(SHOP.mapUrl);if(u.protocol==='https:'){$('map').href=u.href;$('visit-map').href=u.href;$('map').classList.remove('hidden')}}catch{}
 $('mapnote').textContent = '審査用デモ：人物・店舗・エピソード・営業情報は架空です。アレルギー欄も表示例です。地図は本山駅を表示します。';
 $('front').innerHTML=card();$('back').innerHTML=card(true);
 const studio = new URLSearchParams(location.search).get('mode')==='studio';
